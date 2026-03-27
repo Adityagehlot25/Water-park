@@ -2,25 +2,21 @@ const express = require('express');
 const router = express.Router();
 const { getWaitTimes } = require('../services/waitTimeService');
 
-// GET /wait-times
 router.get('/', (req, res) => {
     try {
-        // Fetch the live, in-memory calculated wait times
-        const liveData = getWaitTimes();
+        const state = getWaitTimes();
         
-        if (!liveData || Object.keys(liveData).length === 0) {
+        if (!state.timestamp) {
             return res.status(503).json({ message: "Wait time service is still initializing." });
         }
 
-        // Convert the object map back into an array for the frontend
-        const result = Object.entries(liveData).map(([ride_id, data]) => ({
-            ride_id: ride_id,
-            actual_wait_time: data.wait_time,
-            last_updated: data.last_updated
+        const result = Object.entries(state.rides).map(([rideId, data]) => ({
+            ride_id: rideId,
+            actual_wait_time: data.wait_time
         }));
 
         res.json({
-            status: "success",
+            timestamp: state.timestamp,
             data: result
         });
     } catch (error) {

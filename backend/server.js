@@ -1,25 +1,20 @@
 const express = require('express');
 const cors = require('cors');
 const { initCrowdSimulator } = require('./services/crowdSimulator');
-const { initWaitTimeService } = require('./services/waitTimeService'); // <-- IMPORT NEW SERVICE
+const { initWaitTimeService, calculateWaitTimes } = require('./services/waitTimeService');
 
-// Import Routes
 const ridesRouter = require('./routes/rides');
 const crowdRouter = require('./routes/crowd');
 const waitTimesRouter = require('./routes/waitTimes');
 
 const app = express();
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Mount Routes
 app.use('/rides', ridesRouter);
 app.use('/crowd', crowdRouter);
 app.use('/wait-times', waitTimesRouter);
 
-// Global Error Handler
 app.use((err, req, res, next) => {
     console.error("Global Server Error:", err.stack);
     res.status(500).json({ error: 'Internal Server Error!' });
@@ -27,11 +22,14 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Boot Sequence: Start Simulators sequentially, then open the API port
 const bootServer = async () => {
     try {
-        await initCrowdSimulator();
-        await initWaitTimeService(); // <-- START NEW SERVICE
+        // 1. Load static metadata for wait times first
+        await initWaitTimeService(); 
+        
+        // 2. Start the crowd simulator, and pass the calculation function 
+        //    so it triggers on every single tick. Perfect Sync!
+        await initCrowdSimulator(calculateWaitTimes); 
         
         app.listen(PORT, () => {
             console.log(`\n🌊 Water Park Backend is live on http://localhost:${PORT}`);
