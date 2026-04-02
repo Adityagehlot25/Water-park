@@ -34,10 +34,11 @@ git push -u origin main
 3. Click **New +** → **Web Service**
 4. Select your repo and branch
 5. Fill in:
-   - **Name**: `waterpark-backend`
+   - **Name**: `parkflow-backend`
    - **Environment**: `Node`
-   - **Build Command**: `cd backend && npm install`
-   - **Start Command**: `cd backend && node server.js`
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm install`
+   - **Start Command**: `node server.js`
    - **Plan**: Free
 
 6. Click **Advanced** and add **Environment Variables**:
@@ -52,8 +53,8 @@ git push -u origin main
 
 8. ⏳ Wait for deployment (2-3 minutes)
 
-9. ✅ When it shows "Live ✓", note your backend URL
-   - Example: `https://waterpark-backend.onrender.com`
+6. ✅ When it shows "Live ✓", note your backend URL
+   - Example: `https://parkflow-backend.onrender.com`
 
 ---
 
@@ -62,15 +63,16 @@ git push -u origin main
 1. In Render dashboard, click **New +** → **Web Service**
 2. Select same repo and branch
 3. Fill in:
-   - **Name**: `waterpark-frontend`
+   - **Name**: `parkflow-frontend`
    - **Environment**: `Node`
+   - **Root Directory**: `waterpark-frontend`
    - **Build Command**: `cd waterpark-frontend && npm install && npm run build`
    - **Start Command**: `npm install -g serve && serve -s dist -l 5173`
    - **Plan**: Free
 
 4. Click **Advanced** and add **Environment Variables**:
    ```
-   VITE_API_BASE_URL = https://waterpark-backend.onrender.com
+   VITE_API_BASE_URL = https://parkflow-backend.onrender.com
    ```
    (Replace with your actual backend URL from Step 2)
 
@@ -92,7 +94,7 @@ git push -u origin main
 
 ### Backend Test
 ```bash
-curl https://waterpark-backend.onrender.com/health
+curl https://parkflow-backend.onrender.com/health
 # Should return: {"status":"ok","timestamp":"..."}
 ```
 

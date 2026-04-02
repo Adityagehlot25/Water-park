@@ -23,11 +23,12 @@ This file tells Render how to build and deploy your services.
 # render.yaml - Add to project root
 services:
   - type: web
-    name: waterpark-backend
+    name: parkflow-backend
     runtime: node
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && node server.js
+    root: backend
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -36,17 +37,18 @@ services:
       - key: OPENROUTER_API_KEY
         sync: false
       - key: CORS_ORIGIN
-        value: https://waterpark-frontend.onrender.com
+        value: https://parkflow-frontend.onrender.com
 
   - type: web
-    name: waterpark-frontend
+    name: parkflow-frontend
     runtime: node
     plan: free
-    buildCommand: cd waterpark-frontend && npm install && npm run build
-    startCommand: cd waterpark-frontend && npm install -g serve && serve -s dist -l 5173
+    root: waterpark-frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm install -g serve && serve -s dist -l 5173
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://waterpark-backend.onrender.com
+        value: https://parkflow-backend.onrender.com
 ```
 
 Save this as `render.yaml` in your project root.
@@ -109,15 +111,16 @@ git push -u origin main
 1. Click **New +** → **Web Service**
 2. Select your repository: `REPO_NAME` / `main`
 3. Configure:
-   - **Name**: `waterpark-backend`
+   - **Name**: `parkflow-backend`
    - **Environment**: `Node`
+   - **Root Directory**: `backend`
    - **Build Command**: 
      ```
-     cd backend && npm install
+     npm install
      ```
    - **Start Command**: 
      ```
-     cd backend && node server.js
+     node server.js
      ```
    - **Plan**: Free (or Starter for better performance)
 
@@ -131,7 +134,7 @@ git push -u origin main
 | `NODE_ENV` | `production` |
 | `PORT` | `5000` |
 | `OPENROUTER_API_KEY` | `sk-or-v1-your_actual_key` |
-| `CORS_ORIGIN` | `https://waterpark-frontend.onrender.com` |
+| `CORS_ORIGIN` | `https://parkflow-frontend.onrender.com` |
 
 3. Click **Create Web Service**
 
@@ -141,7 +144,7 @@ git push -u origin main
   - Clone your repository
   - Install dependencies
   - Build and deploy
-  - Assign you a domain like: `https://waterpark-backend.onrender.com`
+  - Assign you a domain like: `https://parkflow-backend.onrender.com`
 
 - **Status page**: Shows "Live ✓" when ready (2-3 minutes)
 
@@ -149,7 +152,7 @@ git push -u origin main
 
 ```bash
 # Check if backend is live
-curl https://waterpark-backend.onrender.com/health
+curl https://parkflow-backend.onrender.com/health
 
 # Should return: {"status":"ok","timestamp":"..."}
 ```
@@ -164,11 +167,12 @@ curl https://waterpark-backend.onrender.com/health
 2. Click **New +** → **Web Service**
 3. Select same repository
 4. Configure:
-   - **Name**: `waterpark-frontend`
+   - **Name**: `parkflow-frontend`
    - **Environment**: `Node`
+   - **Root Directory**: `waterpark-frontend`
    - **Build Command**: 
      ```
-     cd waterpark-frontend && npm install && npm run build
+     npm install && npm run build
      ```
    - **Start Command**: 
      ```
@@ -183,19 +187,19 @@ curl https://waterpark-backend.onrender.com/health
 
 | Key | Value |
 |-----|-------|
-| `VITE_API_BASE_URL` | `https://waterpark-backend.onrender.com` |
+| `VITE_API_BASE_URL` | `https://parkflow-backend.onrender.com` |
 
 3. Click **Create Web Service**
 
 ### 3.3 Wait for Frontend Deploy
 
 - Render deploys automatically
-- You'll get a domain: `https://waterpark-frontend.onrender.com`
+- You'll get a domain: `https://parkflow-frontend.onrender.com`
 - Takes 3-5 minutes
 
 ### 3.4 Test Frontend
 
-Open in browser: `https://waterpark-frontend.onrender.com`
+Open in browser: `https://parkflow-frontend.onrender.com`
 
 ---
 
@@ -363,7 +367,7 @@ Instead of manual setup, you can use the `render.yaml` file:
 2. Go to https://render.com/new
 3. Select "Blueprint" 
 4. Connect your GitHub repository
-5. Name the blueprint: `aqua-imagicaa`
+3. Name the blueprint: `parkflow`
 6. Click "Create Blueprint Instance"
 7. Render creates both services automatically!
 
