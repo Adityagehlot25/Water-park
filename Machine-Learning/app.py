@@ -8,7 +8,7 @@ import os
 # 1. App Initialization & Global State
 # =====================================================================
 app = FastAPI(
-    title="Aqua Imagicaa ML Predictor",
+    title="parkflow ML Predictor",
     description="Microservice for predicting live water park wait times.",
     version="1.1.0"
 )
@@ -87,7 +87,7 @@ def map_day_type() -> str:
 # =====================================================================
 @app.get("/")
 def health_check():
-    return {"status": "ok", "message": "Aqua Imagicaa ML Service is running."}
+    return {"status": "ok", "message": "parkflow ML Service is running."}
 
 @app.post("/predict")
 def predict_wait_time(request: PredictionRequest):

@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-Get the Aqua Imagicaa Dashboard running in 5 minutes!
+Get the parkflow Dashboard running in 5 minutes!
 
 ## Prerequisites Check
 
@@ -108,7 +108,7 @@ Should return ride data in JSON.
 ### Frontend Health Check
 
 - Open http://localhost:5173
-- Should see "Aqua Imagicaa Live Dashboard"
+- Should see "parkflow Live Dashboard"
 - Map should load with ride positions
 
 ---

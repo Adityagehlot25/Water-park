@@ -143,7 +143,7 @@ curl http://localhost:5000/rides
 ### Check If Frontend Is Running
 ```bash
 Open http://localhost:5173
-# Should see "Aqua Imagicaa Live Dashboard"
+# Should see "parkflow Live Dashboard"
 ```
 
 ### Generate Itinerary

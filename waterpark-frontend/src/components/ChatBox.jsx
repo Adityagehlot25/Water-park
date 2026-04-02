@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { config } from '../config';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = config.API_BASE_URL;
 
 const ChatBox = ({ itinerary }) => {
   // 1. Add Minimize State (Default to closed so it doesn't block the screen initially)
   const [isMinimized, setIsMinimized] = useState(true);
 
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm your Aqua Imagicaa Assistant. Ask me about rides, wait times, or your itinerary!", sender: "bot" }
+    { text: "Hi! I'm your parkflow Assistant. Ask me about rides, wait times, or your itinerary!", sender: "bot" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);

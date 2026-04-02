@@ -37,7 +37,7 @@ async function callLLM(systemPrompt, userMessage, jsonMode = false) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${LLM_API_KEY}`,
             'HTTP-Referer': process.env.YOUR_SITE_URL || 'http://localhost:5000', 
-            'X-Title': 'Aqua Imagicaa Assistant' 
+            'X-Title': 'parkflow Assistant' 
         },
         body: JSON.stringify(payload)
     });
@@ -304,7 +304,7 @@ router.post('/', async (req, res) => {
         // STEP 3: Final Response using LLM (The Generator)
         // ---------------------------------------------------------
         const generationPrompt = `
-            You are a highly enthusiastic, helpful AI assistant for the Aqua Imagicaa Water Park.
+            You are a highly enthusiastic, helpful AI assistant for the parkflow Water Park.
             The user asked a question, and the backend system has retrieved the factual data to answer it.
             
             User's original message: "${message}"

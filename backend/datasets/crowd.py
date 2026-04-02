@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 def generate_waterpark_dataset(start_date: str = '2026-03-25') -> pd.DataFrame:
     """
-    Generates a dynamic, minute-level crowd simulation dataset for Aqua Imagicaa.
+    Generates a dynamic, minute-level crowd simulation dataset for parkflow.
     Returns a pandas DataFrame with >10,000 rows.
     """
     

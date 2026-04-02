@@ -12,7 +12,7 @@ function App() {
     <div style={styles.appContainer}>
       <header style={styles.header}>
         <h1 style={{ fontWeight: 800, fontSize: '2.7rem', color: '#002050', letterSpacing: '1px', textShadow: '0 2px 8px #b3d1ff' }}>
-          🌊 Aqua Imagicaa Live Dashboard
+          🌊 parkflow Live Dashboard
         </h1>
         <p>Real-time crowd monitoring and ride status</p>
       </header>

@@ -1,4 +1,4 @@
-# 🌊 Aqua Imagicaa - Live Water Park Dashboard
+# 🌊 parkflow - Live Water Park Dashboard
 
 A full-stack real-time water park management system with AI-powered itinerary planning and live crowd monitoring.
 

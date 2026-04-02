@@ -1,6 +1,6 @@
 # 📡 API Documentation
 
-Complete reference for all Aqua Imagicaa Backend endpoints.
+Complete reference for all parkflow Backend endpoints.
 
 **Base URL**: `http://localhost:5000`
 

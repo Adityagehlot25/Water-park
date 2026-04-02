@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { config } from '../config';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = config.API_BASE_URL;
 
 const ParkMap = ({ itinerary }) => {
   const [layout, setLayout] = useState([]);
